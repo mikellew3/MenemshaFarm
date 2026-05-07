@@ -130,9 +130,8 @@
   /* Photo fills the crimson block with even 24px insets — overrides .img-ph aspect-ratio */
   .hero-right .photo { position: absolute; top: 24px; right: 24px; bottom: 24px; left: 24px; aspect-ratio: auto; }
 
-  /* ═══ i. PROPERTY (paper, four-col gallery) ═══ */
+  /* ═══ i. PROPERTY (paper, four-up scroll) ═══ */
   .property { background: var(--paper); }
-  .property-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 
   /* ═══ ii. JOE (crimson band, 50/50 spread) ═══ */
   .joe { background: var(--berry); color: var(--paper); }
@@ -142,31 +141,39 @@
   .joe h2 em { color: rgba(251,247,240,0.6); }
   .joe-spread { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: start; }
 
-  /* ═══ iii. FLOWERS (cream, 4-up grid) ═══ */
+  /* ═══ iii. FLOWERS (cream, four-up scroll) ═══ */
   .flowers { background: var(--cream); }
-  .flower-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 
-  /* ═══ iv. HARVEST (paper, seasonal carousel) ═══ */
+  /* Shared horizontal scroll pattern for Property + Flowers + Harvest. Always 4 photos visible. */
+  .scroll-row { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; scroll-padding-left: 0; }
+  .scroll-row::-webkit-scrollbar { display: none; }
+  .scroll-row > .img-ph { flex: 0 0 calc((100% - 54px) / 4); scroll-snap-align: start; aspect-ratio: 4 / 5; }
+  .scroll-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--rule); }
+  .scroll-foot.on-crimson { border-top-color: rgba(251,247,240,0.22); }
+  .scroll-foot.on-crimson .stat { color: rgba(251,247,240,0.78); }
+  .scroll-foot.on-crimson .arrow-btn { background: transparent; border-color: rgba(251,247,240,0.4); color: var(--paper); }
+  .scroll-foot.on-crimson .arrow-btn:hover { border-color: var(--paper); background: rgba(251,247,240,0.08); }
+  .scroll-foot .nav-arrows { display: flex; gap: 12px; flex-shrink: 0; }
+  .scroll-foot .arrow-btn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); display: grid; place-items: center; cursor: pointer; transition: all 0.3s; color: var(--ink); }
+  .scroll-foot .arrow-btn:hover { border-color: var(--berry); color: var(--berry); }
+  .scroll-foot .arrow-btn svg { width: 16px; height: 16px; }
+  .scroll-foot .stat { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  .scroll-foot .stat .arrow-inline { color: var(--berry); margin-left: 8px; }
+
+  /* ═══ iv. HARVEST (paper, seasonal carousel — same 4-up sizing) ═══ */
   .harvest { background: var(--paper); }
   .carousel { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
   .carousel::-webkit-scrollbar { display: none; }
   .carousel > .crop-card { scroll-snap-align: start; }
-  /* Every card is 320×400 (4:5) — same size as every other photo on the site */
-  .crop-card { flex: 0 0 320px; height: 400px; border-radius: 2px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
+  /* Cards size to match the property/flowers scroll-row exactly */
+  .crop-card { flex: 0 0 calc((100% - 54px) / 4); aspect-ratio: 4 / 5; border-radius: 2px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
   .crop-card:hover { transform: translateY(-4px); }
   .crop-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,27,23,0.6) 0%, rgba(31,27,23,0.12) 45%, transparent 70%); z-index: 1; pointer-events: none; }
-  /* The .img-ph aspect-ratio is overridden here so the photo fills the card exactly */
   .crop-card .photo { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
   .crop-card .meta { position: absolute; left: 20px; right: 20px; bottom: 20px; color: var(--paper); display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0,0,0,0.35); z-index: 2; }
   .crop-card .meta .when { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251,247,240,0.85); }
   .crop-card .meta .name { font-size: 22px; font-weight: 300; letter-spacing: -0.015em; }
   .crop-card .meta .note { font-size: 12px; color: rgba(251,247,240,0.85); margin-top: 4px; }
-  .carousel-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--rule); }
-  .carousel-foot .nav-arrows { display: flex; gap: 12px; flex-shrink: 0; }
-  .carousel-foot .arrow-btn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); display: grid; place-items: center; cursor: pointer; transition: all 0.3s; color: var(--ink); }
-  .carousel-foot .arrow-btn:hover { border-color: var(--berry); color: var(--berry); }
-  .carousel-foot .arrow-btn svg { width: 16px; height: 16px; }
-  .carousel-foot .stat { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; }
 
   /* ═══ v. MEET US AT THE MARKET (crimson) ═══ */
   .follow { background: var(--berry); color: var(--paper); padding: 180px 56px; }
@@ -211,8 +218,8 @@
 
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 1100px) {
-    .property-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .flower-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .scroll-row > .img-ph,
+    .crop-card { flex-basis: calc((100% - 36px) / 3); }
   }
 
   @media (max-width: 900px) {
@@ -228,15 +235,14 @@
     .hero-right .crimson-bg { right: -24px; bottom: 0; }
     .hero-right .photo { top: 16px; right: 16px; bottom: 16px; left: 16px; }
 
-    .property-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
     .joe-spread { grid-template-columns: 1fr; gap: 36px; }
     /* On mobile lead with the photo, then the copy */
     .joe-spread .img-ph { order: -1; }
 
-    .flower-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-    .crop-card { flex: 0 0 256px; height: 320px; }
+    .scroll-row { gap: 14px; }
+    .scroll-row > .img-ph,
+    .crop-card { flex-basis: calc((100% - 14px) / 2); }
+    .scroll-foot { margin-top: 28px; padding-top: 24px; }
 
     .colors-pair { grid-template-columns: 1fr; }
     .follow { padding: 100px 24px; }
@@ -263,10 +269,10 @@
     p, p.lede { font-size: 15px; }
     .crimson-copy p { font-size: 16px; line-height: 1.65; }
 
-    .flower-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-
-    .crop-card { flex: 0 0 224px; height: 280px; }
-    .carousel-foot { flex-direction: column; align-items: start; gap: 20px; }
+    .scroll-row > .img-ph,
+    .crop-card { flex-basis: 75%; }
+    .scroll-foot { flex-direction: column; align-items: start; gap: 16px; }
+    .scroll-foot .stat { font-size: 10px; }
 
     .colors p.intro { font-size: 15px; margin-bottom: 48px; }
     .color-block { padding: 28px; }
@@ -377,7 +383,7 @@
         <p>Perched on the western edge of Martha's Vineyard, the land slopes from the road down toward Menemsha Pond. Pasture, orchard, hen house, hives — all of it within a slow walk.</p>
       </div>
     </div>
-    <div class="property-grid">
+    <div class="scroll-row" id="property-row">
       <div class="img-ph"><img src="images/mf2.png" alt="The farmstead" loading="lazy"/></div>
       <div class="img-ph"><img src="images/mf3.png" alt="The land at Menemsha Farm" loading="lazy"/></div>
       <div class="img-ph"><img src="images/mf4.png" alt="Orchard rows" loading="lazy"/></div>
@@ -385,6 +391,13 @@
       <div class="img-ph"><img src="images/mf6.png" alt="Across the property" loading="lazy"/></div>
       <div class="img-ph"><img src="images/chick1.png" alt="Pasture-raised hens" loading="lazy"/></div>
       <div class="img-ph"><img src="images/mf1.png" alt="Above the harbor" loading="lazy"/></div>
+    </div>
+    <div class="scroll-foot">
+      <span class="stat">Seven acres · Up-island <span class="arrow-inline">→ scroll for more</span></span>
+      <div class="nav-arrows">
+        <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
+        <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
     </div>
   </div>
 </section>
@@ -428,7 +441,7 @@
         <p>Bunches by the armful, all season long — from the first of the spring blooms through the last of the late-summer color. What's in the field is what's at market.</p>
       </div>
     </div>
-    <div class="flower-grid">
+    <div class="scroll-row" id="flower-row">
       <div class="img-ph"><img src="images/flower1.png" alt="Cut flowers from the field" loading="lazy"/></div>
       <div class="img-ph"><img src="images/flower2.png" alt="Cut flowers from the field" loading="lazy"/></div>
       <div class="img-ph"><img src="images/flower3.png" alt="Cut flowers from the field" loading="lazy"/></div>
@@ -437,6 +450,13 @@
       <div class="img-ph"><img src="images/flowers3.png" alt="Bunches by the armful" loading="lazy"/></div>
       <div class="img-ph"><img src="images/flowers4.png" alt="Bunches by the armful" loading="lazy"/></div>
       <div class="img-ph"><img src="images/flowers5.png" alt="Bunches by the armful" loading="lazy"/></div>
+    </div>
+    <div class="scroll-foot">
+      <span class="stat">Eight bunches in the field <span class="arrow-inline">→ scroll for more</span></span>
+      <div class="nav-arrows">
+        <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
+        <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
     </div>
   </div>
 </section>
@@ -458,23 +478,23 @@
 
       <div class="crop-card">
         <div class="img-ph photo">
-          <img src="images/peach1.png" alt="Stone fruit — peaches, plums, nectarines" loading="lazy"/>
+          <img src="images/basket1.png" alt="Stone fruit — peaches and nectarines" loading="lazy"/>
         </div>
         <div class="meta">
           <span class="when">Jul · Sep</span>
           <span class="name">Stone fruit.</span>
-          <span class="note">Peaches, plums, nectarines.</span>
+          <span class="note">Peaches and nectarines.</span>
         </div>
       </div>
 
       <div class="crop-card">
         <div class="img-ph photo">
-          <img src="images/apple1.png" alt="Heirloom apples, twelve varieties" loading="lazy"/>
+          <img src="images/apple1.png" alt="Honeycrisp apples and Asian pears" loading="lazy"/>
         </div>
         <div class="meta">
           <span class="when">Sep · Nov</span>
-          <span class="name">Heirloom apples.</span>
-          <span class="note">Twelve varieties, unfussy.</span>
+          <span class="name">Apples &amp; pears.</span>
+          <span class="note">Honeycrisp and Asian pear.</span>
         </div>
       </div>
 
@@ -502,7 +522,7 @@
 
       <div class="crop-card">
         <div class="img-ph photo">
-          <img src="images/basket1.png" alt="Pasture eggs collected daily" loading="lazy"/>
+          <img src="images/chick1.png" alt="Pasture eggs collected daily" loading="lazy"/>
         </div>
         <div class="meta">
           <span class="when">Year-round</span>
@@ -512,8 +532,8 @@
       </div>
 
     </div>
-    <div class="carousel-foot">
-      <span class="stat">Five harvests · Three generations · One small farm ·</span>
+    <div class="scroll-foot">
+      <span class="stat">Five harvests · Three generations · One small farm <span class="arrow-inline">→ scroll for more</span></span>
       <div class="nav-arrows">
         <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
         <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -596,11 +616,16 @@
 </footer>
 
 <script>
-  const car = document.getElementById('carousel');
   document.querySelectorAll('.arrow-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const dir = parseInt(btn.dataset.dir, 10);
-      car.scrollBy({ left: dir * 340, behavior: 'smooth' });
+      const section = btn.closest('section');
+      if (!section) return;
+      const row = section.querySelector('.scroll-row, .carousel');
+      if (!row) return;
+      const first = row.firstElementChild;
+      const step = first ? first.getBoundingClientRect().width + 18 : 340;
+      row.scrollBy({ left: dir * step, behavior: 'smooth' });
     });
   });
 </script>
