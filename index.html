@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Menemsha Farms — Chilmark, Martha's Vineyard</title>
-<meta name="description" content="A seven-acre family farm in Chilmark, Martha's Vineyard. Stone fruits, apples, honey, eggs, and flowers — at island farmers markets, all season long." />
+<title>Menemsha Farm — Martha's Vineyard</title>
+<meta name="description" content="A seven-acre family farm on Martha's Vineyard. Stone fruits, apples, honey, eggs, and tulips — at island farmers markets, all season long." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -14,120 +14,52 @@
     --berry-deep: #9A3742;
     --moss: #8A9779;
     --moss-deep: #5E6B53;
-    --cream: #F5EFE6;
+    --moss-light: #B8C2A8;
     --paper: #FBF7F0;
+    --cream: #F5EFE6;
     --bone: #EDE6D8;
     --ink: #1F1B17;
     --ink-soft: #4A4339;
     --rule: #D8CFBE;
     --rule-soft: #EBE3D2;
-
     --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     position: relative;
-    font-feature-settings: "kern", "liga", "ss01";
   }
-
-  /* Subtle paper grain */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.3;
+    opacity: 0.32;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.09 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     mix-blend-mode: multiply;
   }
-
-  /* ───────── Manrope micro-label utility ───────── */
-  .label,
-  .label-sm {
-    font-family: var(--sans);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-  }
-  .label    { font-size: 11px; }
-  .label-sm { font-size: 10px; letter-spacing: 0.28em; }
-
-  /* ═══════════════ LOGO LOCKUP ═══════════════ */
-  /*
-    Format:  M  [ tulip / EST 1999 ]  F
-    The M and F are large Manrope-300 glyphs; the central stack holds
-    a tulip icon over a small tracked "EST · 1999" line.
-  */
-  .lockup {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.18em;
-    font-family: var(--sans);
-    font-weight: 300;
-    font-size: 1em;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: inherit;
-    text-decoration: none;
-    user-select: none;
-  }
-  .lockup-letter {
-    display: inline-block;
-    font-size: 1em;
-    line-height: 1;
-  }
-  .lockup-center {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.18em;
-    padding: 0 0.12em;
-  }
-  .lockup-tulip {
-    display: block;
-    width: auto;
-    height: 0.78em;
-    color: inherit;
-  }
-  .lockup-tulip .bloom { fill: currentColor; }
-  .lockup-tulip .leaf  { fill: currentColor; }
-  /* Two-color variant: crimson bloom, moss leaves */
-  .lockup-tulip.duotone .bloom { fill: var(--berry); }
-  .lockup-tulip.duotone .leaf  { fill: var(--moss-deep); }
-
-  .lockup-est {
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 0.10em;
-    letter-spacing: 0.32em;
-    text-indent: 0.32em;
-    text-transform: uppercase;
-    line-height: 1;
-    white-space: nowrap;
-    opacity: 0.95;
+  .crimson-grain { position: relative; }
+  .crimson-grain::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.18;
+    pointer-events: none;
   }
 
-  /* Compact lockup for very small contexts (favicon-style) — hides the est line */
-  .lockup.compact .lockup-est { display: none; }
-
-  /* ═══════════════ NAV ═══════════════ */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    padding: 22px 48px;
+    padding: 24px 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -135,1044 +67,456 @@
     mix-blend-mode: difference;
     color: white;
   }
-  nav .lockup { font-size: 28px; }
+  nav .nav-mark { font-size: 13px; font-weight: 500; letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; }
+  nav .nav-links { display: flex; gap: 30px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  nav a { color: inherit; text-decoration: none; opacity: 0.85; transition: opacity 0.3s; }
+  nav a:hover { opacity: 1; }
 
-  .nav-links {
-    display: flex;
-    gap: 36px;
-  }
-  .nav-links a {
-    color: inherit;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .nav-links a:hover { opacity: 0.6; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--berry); }
+  .e-bone { color: rgba(251,247,240,0.6); }
+  .e-moss { color: var(--moss-deep); }
+  .display { font-weight: 200; letter-spacing: -0.045em; line-height: 0.92; }
+  .display em { font-style: normal; color: var(--berry); }
+  .display em.light { color: rgba(251,247,240,0.62); }
+  h2 { font-weight: 200; font-size: clamp(44px, 6vw, 80px); letter-spacing: -0.035em; line-height: 1; }
+  h2 em { font-style: normal; color: var(--berry); }
+  h3 { font-weight: 200; font-size: clamp(28px, 3.4vw, 44px); letter-spacing: -0.03em; line-height: 1.1; }
+  p { font-size: 16px; color: var(--ink-soft); }
+  p.lede { font-size: 19px; line-height: 1.55; max-width: 56ch; }
 
-  /* ═══════════════ HERO ═══════════════ */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-  }
+  section { padding: 160px 56px; position: relative; z-index: 2; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .section-head { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; margin-bottom: 96px; align-items: start; }
+  .section-head .left { display: flex; flex-direction: column; gap: 12px; padding-top: 14px; }
+  .section-head .left .num { font-size: 13px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--berry); font-feature-settings: 'lnum'; font-style: italic; opacity: 0.85; }
+  .section-head .left .lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+  .section-head .right > * + * { margin-top: 24px; }
+  .section-head .right p { max-width: 52ch; }
 
-  .hero-left {
-    background: var(--berry);
-    color: white;
-    padding: 96px 64px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-  .hero-left > * { position: relative; z-index: 1; }
+  /* Buttons */
+  .btn { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.02em; padding: 14px 22px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; border: none; cursor: pointer; }
+  .btn-primary { background: var(--berry); color: var(--paper); }
+  .btn-primary:hover { background: var(--berry-deep); }
+  .btn-ghost-ink { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-ghost-ink:hover { background: var(--ink); color: var(--paper); }
+  .btn-pill-paper { background: var(--paper); color: var(--ink); border-radius: 999px; padding: 16px 26px; font-size: 14px; }
+  .btn-pill-paper:hover { background: white; }
+  .btn-ghost-paper { background: transparent; color: var(--paper); border: 1px solid rgba(251,247,240,0.4); }
+  .btn-ghost-paper:hover { background: rgba(251,247,240,0.08); }
 
-  .hero-eyebrow {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    opacity: 0.95;
-    margin-top: 40px;
-  }
+  /* Image placeholder */
+  .img-ph { background: var(--bone); position: relative; overflow: hidden; }
+  .img-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-ph svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .img-ph .ph-meta { position: absolute; left: 20px; bottom: 18px; font-size: 9px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--paper); display: flex; flex-direction: column; gap: 4px; z-index: 2; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
+  .img-ph .ph-meta .src { color: rgba(251,247,240,0.85); }
 
-  .hero-title {
-    font-size: clamp(64px, 9vw, 144px);
-    line-height: 0.92;
-    font-weight: 200;
-    letter-spacing: -0.045em;
-  }
+  /* ═══ HERO ═══ */
+  .hero { min-height: 100vh; padding: 130px 56px 80px; }
+  .hero-inner { display: grid; grid-template-columns: 7fr 5fr; gap: 0; height: calc(100vh - 210px); min-height: 700px; }
+  .hero-left { display: flex; flex-direction: column; justify-content: space-between; padding-right: 48px; }
+  .hero-tag { display: flex; flex-direction: column; gap: 10px; }
+  .hero-tag .name { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+  .hero-wm { width: 100%; }
+  .hero-wm .wm-lockup { display: flex; align-items: center; line-height: 1; font-family: 'Manrope', sans-serif; }
+  .hero-wm .wm-letter { font-weight: 200; font-size: clamp(120px, 19vw, 240px); letter-spacing: -0.06em; color: var(--ink); }
+  .hero-wm .wm-mid { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 14px; transform: translateY(-8px); white-space: nowrap; color: var(--berry); }
+  .hero-wm .wm-mid svg { width: clamp(56px, 8.5vw, 108px); height: auto; color: var(--berry); }
+  .hero-wm .wm-est { font-size: clamp(9px, 0.85vw, 12px); font-weight: 600; letter-spacing: 0.32em; color: var(--ink-soft); white-space: nowrap; }
+  .hero-lede { margin-top: 24px; font-size: clamp(20px, 1.7vw, 26px); font-weight: 200; letter-spacing: -0.025em; color: var(--ink); max-width: 24ch; line-height: 1.25; }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .hero-right { position: relative; }
+  .hero-right .crimson-bg { position: absolute; top: 0; right: -56px; width: calc(100% + 56px); bottom: -80px; background: var(--berry); }
+  .hero-right .photo { position: absolute; top: 24px; right: 24px; left: 24px; bottom: 24px; }
 
-  .hero-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px 32px;
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    opacity: 0.95;
-  }
-  .hero-meta div {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-  }
-  .hero-meta div span:last-child { opacity: 0.85; }
+  /* ═══ STORY (crimson band) ═══ */
+  .story { background: var(--berry); color: var(--paper); }
+  .story .section-head .left .num { color: rgba(251,247,240,0.7); }
+  .story .section-head .left .lbl { color: rgba(251,247,240,0.92); }
+  .story h2 { color: var(--paper); }
+  .story h2 em { color: rgba(251,247,240,0.6); }
+  .story-body { display: grid; grid-template-columns: 1fr; gap: 80px; }
+  .story-body p { color: rgba(251,247,240,0.92); font-size: 17px; line-height: 1.7; max-width: 64ch; margin-bottom: 22px; }
+  .story-body p::first-letter { font-size: 1.4em; }
+  .story-body p.first::first-letter { color: rgba(251,247,240,1); font-weight: 400; }
+  .signed { font-size: 13px; color: rgba(251,247,240,0.6); margin-top: 32px; font-style: italic; }
 
-  .hero-right {
-    padding: 96px 64px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--paper);
-  }
-
-  .hero-image {
-    flex: 1;
-    background: linear-gradient(135deg, var(--bone) 0%, #D8CFBE 100%);
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-    min-height: 50vh;
-    border-radius: 4px;
-  }
-  .hero-image svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.62;
-  }
-  .hero-image::after {
-    content: 'farm photograph →';
-    position: absolute;
-    bottom: 20px;
-    right: 24px;
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    opacity: 0.65;
-  }
-
-  .hero-bottom {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 48px;
-    align-items: end;
-  }
-  .hero-lede {
-    font-size: 19px;
-    line-height: 1.55;
-    font-weight: 300;
-    color: var(--ink);
-    max-width: 480px;
-    letter-spacing: -0.005em;
-  }
-  .hero-lede strong { color: var(--berry); font-weight: 500; }
-  .hero-cta {
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 11px;
-    color: var(--berry);
-    border: 1px solid var(--berry);
-    padding: 14px 22px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .hero-cta:hover { background: var(--berry); color: white; }
-
-  /* ═══════════════ SECTIONS ═══════════════ */
-  section {
-    padding: 140px 48px;
-    position: relative;
-  }
-
-  .section-header {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
-    margin-bottom: 80px;
-    align-items: baseline;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .section-num {
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--berry);
-  }
-
-  h2.section-title {
-    font-size: clamp(40px, 5.5vw, 72px);
-    font-weight: 200;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    color: var(--ink);
-  }
-  h2.section-title em {
-    font-style: normal;
-    font-weight: 300;
-    color: var(--berry);
-  }
-
-  /* ═══════════════ STORY ═══════════════ */
-  .story { background: var(--cream); }
-
-  .story-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .story-prose {
-    font-size: 19px;
-    line-height: 1.65;
-    color: var(--ink);
-    font-weight: 300;
-    letter-spacing: -0.005em;
-  }
-  .story-prose p { margin-bottom: 24px; }
-  .story-prose .lead {
-    font-size: 24px;
-    line-height: 1.45;
-    font-weight: 300;
-    letter-spacing: -0.015em;
-  }
-  .story-prose .lead::first-letter {
-    color: var(--berry);
-    font-weight: 500;
-  }
-  .story-prose .signed {
-    margin-top: 40px;
-    color: var(--moss-deep);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-
-  .story-aside {
-    border-left: 1px solid var(--rule);
-    padding-left: 60px;
-  }
-  .aside-block { margin-bottom: 56px; }
-  .aside-block:last-child { margin-bottom: 0; }
-  .aside-block h4 {
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--moss-deep);
-    margin-bottom: 14px;
-  }
-  .aside-block p {
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--ink);
-    font-weight: 300;
-    letter-spacing: -0.005em;
-  }
-
-  /* ═══════════════ HARVEST (BENTO) ═══════════════ */
+  /* ═══ HARVEST (paper, seasonal carousel) ═══ */
   .harvest { background: var(--paper); }
+  .carousel { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+  .carousel::-webkit-scrollbar { display: none; }
+  .carousel > .crop-card { scroll-snap-align: start; }
+  .crop-card { flex: 0 0 300px; height: 420px; border-radius: 2px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
+  .crop-card:hover { transform: translateY(-4px); }
+  .crop-card.feature { flex: 0 0 420px; }
+  .crop-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,27,23,0.55) 0%, rgba(31,27,23,0.1) 45%, transparent 70%); z-index: 1; pointer-events: none; }
+  .crop-card .photo { position: absolute; inset: 0; }
+  .crop-card .meta { position: absolute; left: 20px; right: 20px; bottom: 20px; color: var(--paper); display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0,0,0,0.3); z-index: 2; }
+  .crop-card .meta .when { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251,247,240,0.85); }
+  .crop-card .meta .name { font-size: 22px; font-weight: 300; letter-spacing: -0.015em; }
+  .crop-card .meta .note { font-size: 12px; color: rgba(251,247,240,0.85); margin-top: 4px; }
+  .carousel-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--rule); }
+  .carousel-foot .nav-arrows { display: flex; gap: 12px; }
+  .carousel-foot .arrow-btn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); display: grid; place-items: center; cursor: pointer; transition: all 0.3s; color: var(--ink); }
+  .carousel-foot .arrow-btn:hover { border-color: var(--berry); color: var(--berry); }
+  .carousel-foot .arrow-btn svg { width: 16px; height: 16px; }
+  .carousel-foot .stat { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; }
 
-  .bento {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(180px, auto);
-    gap: 16px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  /* ═══ FOLLOW ═══ */
+  .follow { background: var(--berry); color: var(--paper); padding: 180px 56px; }
+  .follow .section-head .left .num { color: rgba(251,247,240,0.7); }
+  .follow .section-head .left .lbl { color: rgba(251,247,240,0.92); }
+  .follow h2 { color: var(--paper); }
+  .follow h2 em { color: rgba(251,247,240,0.62); font-style: normal; }
 
-  .tile {
-    border-radius: 16px;
-    padding: 36px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .tile:hover { transform: translateY(-3px); }
-
-  .tile-feature {
-    grid-column: span 7;
-    grid-row: span 2;
-    background: var(--berry);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 56px;
-  }
-  .tile-feature::after {
+  /* ═══ COLORS OF THE FARM (ink) ═══ */
+  .colors { background: var(--ink); color: var(--paper); }
+  .colors .section-head .left .num { color: var(--berry); }
+  .colors .section-head .left .lbl { color: rgba(251,247,240,0.92); }
+  .colors h2 { color: var(--paper); }
+  .colors h2 em { color: rgba(251,247,240,0.7); font-style: italic; font-weight: 300; }
+  .colors p.intro { text-align: center; max-width: 60ch; margin: 0 auto 80px; font-size: 17px; color: rgba(251,247,240,0.78); line-height: 1.65; }
+  .colors-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .color-block { aspect-ratio: 1; border-radius: 4px; position: relative; overflow: hidden; padding: 36px; display: flex; flex-direction: column; justify-content: end; }
+  .color-block::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.35;
     pointer-events: none;
   }
-  .tile-feature > * { position: relative; z-index: 1; }
+  .color-block.crimson { background: var(--berry); color: white; }
+  .color-block.moss { background: var(--moss); color: white; }
+  .color-block .matched { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; opacity: 0.72; margin-bottom: 6px; position: relative; z-index: 2; }
+  .color-block .name { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; position: relative; z-index: 2; }
+  .color-block .source { font-size: 14px; line-height: 1.5; position: relative; z-index: 2; opacity: 0.92; }
+  .color-block .hex { position: absolute; top: 28px; right: 32px; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; z-index: 2; opacity: 0.85; }
 
-  .tile-tag {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-  .tile-feature h3 {
-    font-size: clamp(40px, 5vw, 68px);
-    font-weight: 200;
-    line-height: 1.0;
-    letter-spacing: -0.035em;
-  }
-  .tile-feature p {
-    font-size: 16px;
-    line-height: 1.55;
-    font-weight: 300;
-    max-width: 380px;
-    opacity: 0.95;
-    letter-spacing: -0.005em;
-  }
+  /* ═══ FOOTER ═══ */
+  footer { background: var(--ink); color: var(--paper); padding: 80px 56px 44px; }
+  footer .row { display: flex; justify-content: space-between; align-items: end; padding-bottom: 36px; border-bottom: 1px solid rgba(251,247,240,0.15); margin-bottom: 28px; }
+  footer .footer-wm { display: flex; align-items: center; line-height: 1; font-family: 'Manrope', sans-serif; color: var(--paper); }
+  footer .footer-wm .fwm-letter { font-weight: 200; font-size: 76px; letter-spacing: -0.06em; }
+  footer .footer-wm .fwm-mid { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 6px; transform: translateY(-3px); white-space: nowrap; color: var(--paper); }
+  footer .footer-wm .fwm-mid svg { width: 30px; height: auto; color: var(--paper); }
+  footer .footer-wm .fwm-est { font-size: 7px; font-weight: 600; letter-spacing: 0.32em; color: var(--paper); white-space: nowrap; }
+  footer .row .right { font-size: 12px; color: rgba(251,247,240,0.6); letter-spacing: 0.04em; line-height: 1.6; max-width: 28ch; text-align: right; }
+  footer .bot { display: flex; justify-content: space-between; font-size: 10px; color: rgba(251,247,240,0.45); letter-spacing: 0.18em; text-transform: uppercase; }
 
-  .tile-stat {
-    grid-column: span 5;
-    background: white;
-    border: 1px solid var(--rule-soft);
-    border-top: 2px solid var(--berry);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .tile-stat-label {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .tile-stat-num {
-    font-size: clamp(80px, 10vw, 156px);
-    line-height: 0.85;
-    font-weight: 200;
-    color: var(--ink);
-    letter-spacing: -0.06em;
-  }
-  .tile-stat-num em {
-    font-style: normal;
-    color: var(--berry);
-    font-weight: 300;
-  }
-  .tile-stat-sub {
-    font-size: 14px;
-    color: var(--ink-soft);
-    font-weight: 300;
-    letter-spacing: -0.005em;
-  }
-
-  .tile-image {
-    grid-column: span 5;
-    grid-row: span 2;
-    padding: 0;
-    background: var(--moss);
-    position: relative;
-    min-height: 380px;
-  }
-  .tile-image svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .tile-image-label {
-    position: absolute;
-    bottom: 24px;
-    left: 28px;
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: white;
-    opacity: 0.92;
-    z-index: 2;
-  }
-
-  .tile-list {
-    grid-column: span 4;
-    background: white;
-    border: 1px solid var(--rule-soft);
-  }
-  .tile-list h4 {
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--berry);
-    margin-bottom: 20px;
-  }
-  .tile-list ul { list-style: none; }
-  .tile-list li {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--rule-soft);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: -0.005em;
-  }
-  .tile-list li:last-child { border-bottom: none; }
-  .tile-list li span {
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    white-space: nowrap;
-  }
-
-  .tile-quote {
-    grid-column: span 3;
-    background: var(--ink);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .tile-quote q {
-    font-size: 18px;
-    line-height: 1.45;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    quotes: "\201C" "\201D";
-  }
-  .tile-quote q::before, .tile-quote q::after { color: var(--berry); }
-  .tile-quote-attr {
-    margin-top: 24px;
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--moss);
-    opacity: 0.95;
-  }
-
-  /* ═══════════════ MARKETS ═══════════════ */
-  .markets { background: var(--cream); }
-
-  .markets-intro {
-    max-width: 760px;
-    margin: 0 auto 64px;
-    text-align: center;
-    font-size: 21px;
-    line-height: 1.55;
-    font-weight: 300;
-    color: var(--ink-soft);
-    letter-spacing: -0.01em;
-  }
-
-  .markets-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    max-width: 1100px;
-    margin: 0 auto 56px;
-  }
-  .market-card {
-    background: white;
-    border: 1px solid var(--rule-soft);
-    border-radius: 16px;
-    padding: 36px;
-    transition: all 0.4s ease;
-  }
-  .market-card:hover {
-    border-color: var(--berry);
-    transform: translateY(-2px);
-  }
-  .market-day {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--berry);
-    margin-bottom: 12px;
-  }
-  .market-name {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 10px;
-    line-height: 1.1;
-  }
-  .market-time {
-    font-size: 14px;
-    color: var(--ink-soft);
-    font-weight: 400;
-    letter-spacing: -0.005em;
-  }
-
-  .markets-note {
-    text-align: center;
-    font-size: 15px;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-  .markets-note a {
-    color: var(--berry);
-    text-decoration: none;
-    border-bottom: 1px solid var(--berry);
-    padding-bottom: 1px;
-    font-weight: 500;
-  }
-
-  /* ═══════════════ COLORS OF THE FARM ═══════════════ */
-  .colors {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .colors .section-num { color: var(--berry); }
-  .colors h2.section-title { color: var(--paper); }
-  .colors h2.section-title em { color: var(--berry); }
-  .colors .section-header {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 24px;
-  }
-  .colors .section-header > * { justify-self: center; }
-
-  .colors-intro {
-    max-width: 720px;
-    margin: 0 auto 80px;
-    font-size: 19px;
-    line-height: 1.6;
-    color: rgba(245, 239, 230, 0.78);
-    font-weight: 300;
-    text-align: center;
-    letter-spacing: -0.005em;
-  }
-
-  .swatches {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .swatch {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 36px;
-    align-items: start;
-  }
-  .swatch-block {
-    aspect-ratio: 1 / 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  .swatch-block.berry { background: var(--berry); }
-  .swatch-block.moss  { background: var(--moss); }
-  .swatch-block::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay;
-  }
-  .swatch-info h3 {
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--paper);
-    margin-bottom: 6px;
-    letter-spacing: -0.02em;
-  }
-  .swatch-source {
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(245, 239, 230, 0.5);
-    margin-bottom: 20px;
-  }
-  .swatch-info p {
-    font-size: 15px;
-    line-height: 1.55;
-    color: rgba(245, 239, 230, 0.8);
-    font-weight: 300;
-    margin-bottom: 16px;
-    letter-spacing: -0.005em;
-  }
-  .swatch-hex {
-    font-weight: 500;
-    font-size: 11px;
-    color: rgba(245, 239, 230, 0.55);
-    letter-spacing: 0.22em;
-  }
-
-  .colors-mark {
-    margin: 96px auto 0;
-    text-align: center;
-    color: var(--paper);
-  }
-  .colors-mark .lockup { font-size: 64px; }
-
-  /* ═══════════════ FOLLOW (Instagram CTA) ═══════════════ */
-  .follow {
-    background: var(--berry);
-    color: white;
-    padding: 140px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .follow::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-  .follow > * { position: relative; z-index: 1; }
-
-  .follow-mark {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    opacity: 0.92;
-  }
-  h2.follow-title {
-    font-size: clamp(48px, 6.5vw, 92px);
-    font-weight: 200;
-    line-height: 1.0;
-    letter-spacing: -0.04em;
-    margin-bottom: 16px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .follow-sub {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.5;
-    max-width: 560px;
-    margin: 0 auto 56px;
-    opacity: 0.92;
-    letter-spacing: -0.005em;
-  }
-
-  .follow-handle {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--sans);
-    font-size: 28px;
-    font-weight: 400;
-    color: white;
-    text-decoration: none;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.32);
-    padding: 22px 36px;
-    border-radius: 100px;
-    transition: all 0.3s ease;
-    letter-spacing: -0.01em;
-  }
-  .follow-handle:hover {
-    background: white;
-    color: var(--berry);
-  }
-  .follow-handle svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .follow-meta {
-    margin-top: 64px;
-    display: flex;
-    justify-content: center;
-    gap: 64px;
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-
-  /* ═══════════════ FOOTER ═══════════════ */
-  footer {
-    background: var(--ink);
-    color: rgba(245, 239, 230, 0.7);
-    padding: 56px 48px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  footer .lockup {
-    color: var(--paper);
-    font-size: 22px;
-    text-transform: none;
-    letter-spacing: -0.04em;
-  }
-
-  /* ───────── ANIMATIONS ───────── */
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .hero-left > * {
-    opacity: 0;
-    animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  }
-  .hero-left .hero-eyebrow { animation-delay: 0.15s; }
-  .hero-left .hero-title   { animation-delay: 0.30s; }
-  .hero-left .hero-meta    { animation-delay: 0.55s; }
-
-  .hero-right > * {
-    opacity: 0;
-    animation: fade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  }
-  .hero-right .hero-image  { animation-delay: 0.40s; }
-  .hero-right .hero-bottom { animation-delay: 0.70s; }
-
-  /* ───────── RESPONSIVE ───────── */
+  /* responsive */
   @media (max-width: 900px) {
-    nav { padding: 18px 24px; }
-    nav .lockup { font-size: 22px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left, .hero-right { padding: 80px 28px 48px; }
-    .hero-image { min-height: 40vh; }
-    .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
     section { padding: 100px 24px; }
-    .section-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
-    .story-grid, .swatches { grid-template-columns: 1fr; gap: 56px; }
-    .story-aside { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 56px; }
-    .bento { gap: 12px; }
-    .tile { padding: 28px; }
-    .tile-feature { padding: 36px; grid-column: span 12; grid-row: auto; }
-    .tile-stat   { grid-column: span 12; }
-    .tile-image  { grid-column: span 12; grid-row: auto; min-height: 280px; }
-    .tile-list   { grid-column: span 12; }
-    .tile-quote  { grid-column: span 12; }
-    .markets-grid { grid-template-columns: 1fr; }
-    .swatch { grid-template-columns: 100px 1fr; gap: 24px; }
-    .colors-mark .lockup { font-size: 44px; }
-    .follow-meta { flex-direction: column; gap: 18px; }
-    .follow-handle { font-size: 22px; padding: 18px 28px; }
-    footer { flex-direction: column; gap: 18px; text-align: center; }
+    nav { padding: 18px 24px; }
+    nav .nav-links { display: none; }
+    .section-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+    .hero { padding: 110px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; height: auto; min-height: 0; gap: 32px; }
+    .hero-left { padding-right: 0; gap: 32px; }
+    .hero-right { height: 360px; }
+    .hero-right .crimson-bg { right: -24px; bottom: -32px; }
+    .crop-card { flex: 0 0 240px; height: 320px; }
+    .crop-card.feature { flex: 0 0 280px; }
+    .colors-pair { grid-template-columns: 1fr; }
+    .follow { padding: 100px 24px; }
+    footer .row { flex-direction: column; align-items: start; gap: 16px; }
+    footer .row .right { text-align: left; }
+    footer .bot { flex-direction: column; gap: 8px; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 80px 20px; }
+    nav { padding: 16px 20px; }
+    nav .nav-mark span { display: none; }
+    .hero { padding: 90px 20px 48px; min-height: auto; }
+    .hero-inner { gap: 24px; }
+    .hero-tag .name { font-size: 22px; }
+    .hero-wm .wm-mid { padding: 0 8px; gap: 6px; }
+    .hero-lede { font-size: 18px; }
+    .hero-right { height: 280px; }
+    .hero-right .crimson-bg { right: -20px; bottom: -24px; }
+    h2 { font-size: clamp(36px, 12vw, 56px); }
+    p, p.lede { font-size: 15px; }
+    .story-body p { font-size: 16px; line-height: 1.65; }
+    .crop-card { flex: 0 0 220px; height: 300px; }
+    .crop-card.feature { flex: 0 0 240px; }
+    .colors p.intro { font-size: 15px; margin-bottom: 48px; }
+    .color-block { padding: 28px; }
+    footer { padding: 60px 20px 32px; }
   }
 </style>
 </head>
 <body>
 
-<!--
-  ═══════════════ TULIP LOCKUP (reusable) ═══════════════
-  The bloom is built from a single closed path: three peaks (left outer petal,
-  center petal showing through, right outer petal) separated by V-notch valleys.
-  The leaves sweep outward from a short stem, more horizontal than vertical, so
-  the silhouette reads as a tulip rather than anything else.
--->
+<!-- SVG symbol library: tulip mark, instagram glyph, carousel arrows -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="tulip" viewBox="0 0 40 64">
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 C 12 12, 9 20, 11 28 C 13 32, 16 33, 20 33"/>
+        <path d="M20 6 C 28 12, 31 20, 29 28 C 27 32, 24 33, 20 33"/>
+        <path d="M20 8 L 20 33"/>
+        <path d="M16 9 L 20 4 L 24 9"/>
+        <path d="M20 33 L 20 60"/>
+        <path d="M20 46 C 14 44, 9 41, 5 36 C 8 41, 13 47, 20 49"/>
+        <path d="M20 46 C 26 44, 31 41, 35 36 C 32 41, 27 47, 20 49"/>
+      </g>
+    </symbol>
+    <symbol id="ig" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/>
+      </g>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12 L 19 12"/><path d="M13 6 L 19 12 L 13 18"/>
+      </g>
+    </symbol>
+    <symbol id="arrow-l" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12 L 5 12"/><path d="M11 6 L 5 12 L 11 18"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
 
 <nav>
-  <a href="#" class="lockup" aria-label="Menemsha Farms — Est. 1999">
-    <span class="lockup-letter">M</span>
-    <span class="lockup-center">
-      <svg class="lockup-tulip" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- bloom: 3-petal silhouette with V-notches -->
-        <path class="bloom" d="
-          M 14 56
-          C 12 33, 19 12, 27 9
-          C 31 14, 35 22, 38 20
-          C 39 16, 39 13, 40 12
-          C 41 13, 41 16, 42 20
-          C 45 22, 49 14, 53 9
-          C 61 12, 68 33, 66 56
-          C 64 66, 50 68, 40 68
-          C 30 68, 16 66, 14 56
-          Z"/>
-        <!-- short stem -->
-        <rect class="leaf" x="38.5" y="68" width="3" height="14"/>
-        <!-- leaves: sweep outward, more horizontal than vertical -->
-        <path class="leaf" d="M 40 80 Q 22 80, 6 99 Q 26 92, 40 92 Z"/>
-        <path class="leaf" d="M 40 80 Q 58 80, 74 99 Q 54 92, 40 92 Z"/>
-      </svg>
-      <span class="lockup-est">Est · 1999</span>
-    </span>
-    <span class="lockup-letter">F</span>
-  </a>
-
+  <div class="nav-mark">
+    <svg viewBox="0 0 40 64" style="width:13px;height:21px;" aria-hidden="true"><use href="#tulip"/></svg>
+    <span>Menemsha Farm</span>
+  </div>
   <div class="nav-links">
     <a href="#story">Story</a>
     <a href="#harvest">Harvest</a>
-    <a href="#markets">Markets</a>
     <a href="#follow">Follow</a>
   </div>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<header class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Chilmark · Martha's Vineyard · Est. 1999</div>
-    <h1 class="hero-title">Seven<br>acres,<br>tended<br>slowly.</h1>
-    <div class="hero-meta">
-      <div><span>Place</span><span>Chilmark, MV</span></div>
-      <div><span>Acres</span><span>07</span></div>
-      <div><span>Since</span><span>1999</span></div>
-      <div><span>Operated By</span><span>Family · Veteran</span></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-image">
-      <svg viewBox="0 0 600 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F5EFE6"/>
-            <stop offset="100%" stop-color="#EDE6D8"/>
-          </linearGradient>
-        </defs>
-        <rect width="600" height="500" fill="url(#sky)"/>
-        <path d="M0,320 Q150,260 300,290 T600,270 L600,500 L0,500 Z" fill="#8A9779" opacity="0.5"/>
-        <path d="M0,380 Q200,340 400,360 T600,350 L600,500 L0,500 Z" fill="#5E6B53" opacity="0.6"/>
-        <circle cx="120" cy="300" r="50" fill="#5E6B53" opacity="0.8"/>
-        <circle cx="160" cy="320" r="38" fill="#8A9779" opacity="0.85"/>
-        <circle cx="450" cy="290" r="55" fill="#5E6B53" opacity="0.8"/>
-        <circle cx="490" cy="310" r="40" fill="#8A9779" opacity="0.85"/>
-        <rect x="115" y="340" width="10" height="50" fill="#4A4339"/>
-        <rect x="445" y="340" width="10" height="50" fill="#4A4339"/>
-        <circle cx="320" cy="430" r="6" fill="#BC4853"/>
-        <circle cx="335" cy="440" r="4" fill="#BC4853"/>
-        <circle cx="310" cy="445" r="5" fill="#BC4853"/>
-      </svg>
-    </div>
-    <div class="hero-bottom">
-      <p class="hero-lede">A small family farm on the western edge of the island. Find us at <strong>island farmers markets</strong> all season long.</p>
-      <a href="#markets" class="hero-cta">See Markets →</a>
-    </div>
-  </div>
-</header>
-
-<!-- ═══════════════ STORY ═══════════════ -->
-<section id="story" class="story">
-  <div class="section-header">
-    <div class="section-num">i. The Land</div>
-    <h2 class="section-title">A working farm in the<br><em>quiet end</em> of the island.</h2>
-  </div>
-  <div class="story-grid">
-    <div class="story-prose">
-      <p class="lead">Menemsha Farms sits on seven acres in Chilmark, where the western light comes long and slow over the pond.</p>
-      <p>Joe and his family have stewarded the land since 1999, in the old way — orchard rows kept by hand, bees moved with the season, hens that know their keepers by step. Nothing is rushed here. The peaches ripen when peaches ripen.</p>
-      <p>The farm is small on purpose. It is what one family can hold well, and what the land can give without complaint. The work is quiet, mostly, and constant, and beautiful.</p>
-      <p class="signed">— A note from the family</p>
-    </div>
-    <div class="story-aside">
-      <div class="aside-block">
-        <h4>Stewardship</h4>
-        <p>Three generations on the same seven acres, with a fourth on the way.</p>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="eyebrow">Martha's Vineyard · Est. 1999</span>
+        <span class="name">Menemsha Farm</span>
       </div>
-      <div class="aside-block">
-        <h4>Practice</h4>
-        <p>Low-spray orchard care, pasture-raised hens, and bees that work the wild meadows beside the rows.</p>
+      <div>
+        <div class="hero-wm">
+          <div class="wm-lockup">
+            <span class="wm-letter">M</span>
+            <div class="wm-mid">
+              <svg viewBox="0 0 40 64" aria-hidden="true"><use href="#tulip"/></svg>
+              <span class="wm-est">EST · 1999</span>
+            </div>
+            <span class="wm-letter">F</span>
+          </div>
+        </div>
+        <p class="hero-lede">A seven-acre family farm at up-island on Martha's Vineyard. Tended slowly, since 1999.</p>
       </div>
-      <div class="aside-block">
-        <h4>Place</h4>
-        <p>Chilmark, Martha's Vineyard. Five minutes from the harbor, a world away from everything else.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#follow">Follow along <svg width="14" height="14" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn-ghost-ink" href="https://instagram.com/menemshafarm" target="_blank" rel="noopener">
+          <svg width="14" height="14" aria-hidden="true"><use href="#ig"/></svg> @menemshafarm
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="crimson-bg crimson-grain"></div>
+      <div class="img-ph photo">
+        <img src="images/flowers4.png" alt="Tulips by the bunch, picked at the farm" loading="eager"/>
+        <div class="ph-meta"><span>Picked this morning</span><span class="src">@menemshafarm</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ HARVEST (BENTO) ═══════════════ -->
-<section id="harvest" class="harvest">
-  <div class="section-header">
-    <div class="section-num">ii. The Harvest</div>
-    <h2 class="section-title">What grows here,<br>and <em>when</em>.</h2>
-  </div>
-
-  <div class="bento">
-    <div class="tile tile-feature">
-      <div class="tile-tag">In Season Now</div>
-      <h3>Stone fruit,<br>kept simple.</h3>
-      <p>Peaches, plums, and nectarines, trained low and picked ripe. Small crops, big flavor — the kind of fruit you eat standing over the sink.</p>
-    </div>
-
-    <div class="tile tile-stat">
-      <div class="tile-stat-label">Established</div>
-      <div class="tile-stat-num"><em>1999</em></div>
-      <div class="tile-stat-sub">Three generations · seven acres</div>
-    </div>
-
-    <div class="tile tile-image">
-      <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="400" height="400" fill="#8A9779"/>
-        <path d="M0,240 Q100,200 200,220 T400,210 L400,400 L0,400 Z" fill="#5E6B53"/>
-        <path d="M0,300 Q150,270 300,285 T400,280 L400,400 L0,400 Z" fill="#3E4734"/>
-        <circle cx="80"  cy="220" r="35" fill="#3E4734"/>
-        <circle cx="320" cy="210" r="40" fill="#3E4734"/>
-        <rect x="76"  y="245" width="8" height="40" fill="#1F1B17"/>
-        <rect x="316" y="240" width="8" height="40" fill="#1F1B17"/>
-        <circle cx="200" cy="320" r="5" fill="#BC4853"/>
-        <circle cx="215" cy="330" r="4" fill="#BC4853"/>
-        <circle cx="190" cy="335" r="4" fill="#BC4853"/>
-      </svg>
-      <div class="tile-image-label">[ orchard, late summer ]</div>
-    </div>
-
-    <div class="tile tile-list">
-      <h4>Year-Round Calendar</h4>
-      <ul>
-        <li>Stone Fruit       <span>Jul – Sep</span></li>
-        <li>Heirloom Apples   <span>Sep – Nov</span></li>
-        <li>Wildflower Honey  <span>Late Summer</span></li>
-        <li>Pasture Eggs      <span>Year Round</span></li>
-        <li>Cut Flowers       <span>Jun – Oct</span></li>
-      </ul>
-    </div>
-
-    <div class="tile tile-quote">
-      <q>The peaches ripen when peaches ripen. There is no other way.</q>
-      <div class="tile-quote-attr">— Joe</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ MARKETS ═══════════════ -->
-<section id="markets" class="markets">
-  <div class="section-header">
-    <div class="section-num">iii. Find Us</div>
-    <h2 class="section-title">Our farm goes to <em>market</em>.<br>Come find us.</h2>
-  </div>
-
-  <p class="markets-intro">We don't sell from the farm. The whole harvest goes to market — bunches of flowers, flats of stone fruit, jars of honey, dozens of eggs. Look for our table.</p>
-
-  <div class="markets-grid">
-    <div class="market-card">
-      <div class="market-day">Wednesdays</div>
-      <div class="market-name">West Tisbury<br>Farmers Market</div>
-      <div class="market-time">9:00 am – 12:00 pm · Summer season</div>
-    </div>
-    <div class="market-card">
-      <div class="market-day">Saturdays</div>
-      <div class="market-name">West Tisbury<br>Farmers Market</div>
-      <div class="market-time">9:00 am – 12:00 pm · Summer season</div>
-    </div>
-    <div class="market-card">
-      <div class="market-day">Sundays</div>
-      <div class="market-name">Chilmark<br>Flea Market</div>
-      <div class="market-time">9:00 am – 2:00 pm · Late summer</div>
-    </div>
-    <div class="market-card">
-      <div class="market-day">Pop-ups</div>
-      <div class="market-name">Island events<br>& private orders</div>
-      <div class="market-time">By the season · Announced on Instagram</div>
-    </div>
-  </div>
-
-  <p class="markets-note">Schedules shift with the season. <a href="https://instagram.com/menemshafarm" target="_blank" rel="noopener">Follow @menemshafarm</a> for the current week's stops.</p>
-</section>
-
-<!-- ═══════════════ COLORS OF THE FARM ═══════════════ -->
-<section class="colors">
-  <div class="section-header">
-    <div class="section-num">iv. A Note on Color</div>
-    <h2 class="section-title">The colors of this place<br>were <em>matched by hand</em>.</h2>
-  </div>
-  <p class="colors-intro">The two colors that mark our farm — and now this site — were not chosen from a catalogue. Joe pulled them straight from the property. The crimson came from a berry on a bush by the house. The green came from a piece of moss off a tree on the land. Both were carried to the paint shop and matched by eye.</p>
-
-  <div class="swatches">
-    <div class="swatch">
-      <div class="swatch-block berry"></div>
-      <div class="swatch-info">
-        <h3>Berry Crimson</h3>
-        <div class="swatch-source">Matched from · Berry bush by the house</div>
-        <p>A soft, slightly muted red. The color of a single berry held up to the light, not the color of the bush from across the yard.</p>
-        <div class="swatch-hex">#BC4853</div>
+<!-- ═══ STORY ═══ -->
+<section class="story crimson-grain" id="story">
+  <div class="container" style="position:relative; z-index:2;">
+    <div class="section-head">
+      <div class="left">
+        <span class="num">i.</span>
+        <span class="lbl">The Land</span>
+      </div>
+      <div class="right">
+        <h2>A quiet end of the <em>island,</em> seven acres on a slope above the harbor.</h2>
       </div>
     </div>
-    <div class="swatch">
-      <div class="swatch-block moss"></div>
-      <div class="swatch-info">
-        <h3>Tree Moss</h3>
-        <div class="swatch-source">Matched from · Moss on the old oak</div>
-        <p>A quiet, dusty green. The color you only really see when you bring a piece of bark inside and set it on the kitchen table.</p>
-        <div class="swatch-hex">#8A9779</div>
+    <div class="story-body">
+      <div style="max-width: 64ch;">
+        <p class="first">Perched above the harbor on the western edge of Martha's Vineyard, Menemsha Farm spans seven acres shaped by salt air and steady work. Three generations, anchored by Joe.</p>
+        <p>We grow stone fruits — peaches and nectarines — alongside heirloom apples, cultivated honey, pasture-raised eggs, and cut flowers including our beautiful and famous tulips. Everything goes to market.</p>
+        <p>The work is quiet, mostly, and constant, and beautiful.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Two-color logo as a closing brand statement -->
-  <div class="colors-mark">
-    <span class="lockup" aria-hidden="true">
-      <span class="lockup-letter">M</span>
-      <span class="lockup-center">
-        <svg class="lockup-tulip duotone" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg">
-          <path class="bloom" d="M 14 56 C 12 33, 19 12, 27 9 C 31 14, 35 22, 38 20 C 39 16, 39 13, 40 12 C 41 13, 41 16, 42 20 C 45 22, 49 14, 53 9 C 61 12, 68 33, 66 56 C 64 66, 50 68, 40 68 C 30 68, 16 66, 14 56 Z"/>
-          <rect class="leaf" x="38.5" y="68" width="3" height="14"/>
-          <path class="leaf" d="M 40 80 Q 22 80, 6 99 Q 26 92, 40 92 Z"/>
-          <path class="leaf" d="M 40 80 Q 58 80, 74 99 Q 54 92, 40 92 Z"/>
-        </svg>
-        <span class="lockup-est">Est · 1999</span>
-      </span>
-      <span class="lockup-letter">F</span>
-    </span>
+<!-- ═══ HARVEST (carousel) ═══ -->
+<section class="harvest" id="harvest">
+  <div class="container">
+    <div class="section-head">
+      <div class="left">
+        <span class="num">ii.</span>
+        <span class="lbl">The Harvest</span>
+      </div>
+      <div class="right">
+        <h2>The beauty of the early fall harvest is earned in the unseen work of spring.</h2>
+        <p style="margin-top:18px;">A working calendar. What's at the market is what's fresh in season.</p>
+      </div>
+    </div>
+    <div class="carousel" id="carousel">
+
+      <div class="crop-card feature">
+        <div class="img-ph photo">
+          <img src="images/flower1.png" alt="Tulips, by the bunch" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="when">Apr · May · Now</span>
+          <span class="name">Tulips, by the bunch.</span>
+          <span class="note">Cut at dawn, on the table by ten.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/peach1.png" alt="Stone fruit — peaches, plums, nectarines" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="when">Jul · Sep</span>
+          <span class="name">Stone fruit.</span>
+          <span class="note">Peaches, plums, nectarines.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/apple1.png" alt="Heirloom apples, twelve varieties" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="when">Sep · Nov</span>
+          <span class="name">Heirloom apples.</span>
+          <span class="note">Twelve varieties, unfussy.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/honey1.png" alt="Cultivated honey by the jar" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="when">Year-round</span>
+          <span class="name">Cultivated honey.</span>
+          <span class="note">By the jar, while it lasts.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/chick1.png" alt="Pasture-raised hens" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="when">Year-round</span>
+          <span class="name">Pasture eggs.</span>
+          <span class="note">Collected every morning.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="carousel-foot">
+      <span class="stat">Five crops · Three Generations · One small farm ·</span>
+      <div class="nav-arrows">
+        <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
+        <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════ FOLLOW ═══════════════ -->
-<section id="follow" class="follow">
-  <div class="follow-mark">Stay With Us</div>
-  <h2 class="follow-title">Where we are this week.</h2>
-  <p class="follow-sub">Markets shift, harvests change, and the best way to know what we're picking is to follow along.</p>
-  <a href="https://instagram.com/menemshafarm" target="_blank" rel="noopener" class="follow-handle">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-    </svg>
-    @menemshafarm
-  </a>
-  <div class="follow-meta">
-    <div>Chilmark · MA</div>
-    <div>Est. 1999</div>
-    <div>Family · Veteran-Operated</div>
+<!-- ═══ FOLLOW ═══ -->
+<section class="follow crimson-grain" id="follow">
+  <div class="container" style="position:relative; z-index:2;">
+    <div class="section-head">
+      <div class="left">
+        <span class="num">iii.</span>
+        <span class="lbl">Stay With Us</span>
+      </div>
+      <div class="right">
+        <h2>Where we are <em>this week.</em></h2>
+        <p style="color: rgba(251,247,240,0.85); font-size: 17px; line-height: 1.65;">Markets shift, harvests change, and the best way to know what we're picking is to follow along.</p>
+        <div style="margin-top: 32px;">
+          <a class="btn btn-pill-paper" href="https://instagram.com/menemshafarm" target="_blank" rel="noopener">
+            <svg width="18" height="18" aria-hidden="true"><use href="#ig"/></svg> @menemshafarm
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- ═══ COLORS OF THE FARM ═══ -->
+<section class="colors" id="colors">
+  <div class="container">
+    <div class="section-head">
+      <div class="left">
+        <span class="num">iv.</span>
+        <span class="lbl">A Note on Color</span>
+      </div>
+      <div class="right">
+        <h2>Pulled directly from <em>the land.</em></h2>
+        <p style="color: rgba(251,247,240,0.78); font-size: 17px; line-height: 1.65;">Joe carried a berry from the bush by the house and a piece of moss from an old oak to a local paint shop. Both colors were matched by eye — and you can find them dotted throughout the farm.</p>
+      </div>
+    </div>
+    <div class="colors-pair">
+      <div class="color-block crimson">
+        <span class="hex">#BC4853</span>
+        <span class="matched">Matched from</span>
+        <span class="name">Berry Crimson</span>
+        <span class="source">A berry on the bush by the house.</span>
+      </div>
+      <div class="color-block moss">
+        <span class="hex">#8A9779</span>
+        <span class="matched">Matched from</span>
+        <span class="name">Tree Moss</span>
+        <span class="source">A piece of moss on the old oak.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  <a href="#" class="lockup" aria-label="Menemsha Farms">
-    <span class="lockup-letter">M</span>
-    <span class="lockup-center">
-      <svg class="lockup-tulip" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path class="bloom" d="M 14 56 C 12 33, 19 12, 27 9 C 31 14, 35 22, 38 20 C 39 16, 39 13, 40 12 C 41 13, 41 16, 42 20 C 45 22, 49 14, 53 9 C 61 12, 68 33, 66 56 C 64 66, 50 68, 40 68 C 30 68, 16 66, 14 56 Z"/>
-        <rect class="leaf" x="38.5" y="68" width="3" height="14"/>
-        <path class="leaf" d="M 40 80 Q 22 80, 6 99 Q 26 92, 40 92 Z"/>
-        <path class="leaf" d="M 40 80 Q 58 80, 74 99 Q 54 92, 40 92 Z"/>
-      </svg>
-      <span class="lockup-est">Est · 1999</span>
-    </span>
-    <span class="lockup-letter">F</span>
-  </a>
-  <div>© 2026 · Chilmark · Martha's Vineyard</div>
+  <div class="container">
+    <div class="row">
+      <div class="footer-wm">
+        <span class="fwm-letter">M</span>
+        <div class="fwm-mid">
+          <svg viewBox="0 0 40 64" aria-hidden="true"><use href="#tulip"/></svg>
+          <span class="fwm-est">EST · 1999</span>
+        </div>
+        <span class="fwm-letter">F</span>
+      </div>
+      <div class="right">A small family farm on Martha's Vineyard.</div>
+    </div>
+    <div class="bot">
+      <span>© 2026 Menemsha Farm</span>
+      <span>Martha's Vineyard, MA</span>
+      <span>Family-owned · Veteran-operated</span>
+    </div>
+  </div>
 </footer>
+
+<script>
+  const car = document.getElementById('carousel');
+  document.querySelectorAll('.arrow-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = parseInt(btn.dataset.dir, 10);
+      car.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    });
+  });
+</script>
 
 </body>
 </html>
