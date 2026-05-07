@@ -112,9 +112,9 @@
   .crimson-copy .signed { font-size: 13px; color: rgba(251,247,240,0.6); margin-top: 28px; font-style: italic; }
 
   /* ═══ HERO ═══ */
-  .hero { min-height: 100vh; padding: 130px 56px 80px; }
-  .hero-inner { display: grid; grid-template-columns: 7fr 5fr; gap: 0; height: calc(100vh - 210px); min-height: 700px; }
-  .hero-left { display: flex; flex-direction: column; justify-content: space-between; padding-right: 48px; }
+  .hero { padding: 130px 56px 80px; }
+  .hero-inner { display: grid; grid-template-columns: 7fr 5fr; gap: 0; align-items: stretch; }
+  .hero-left { display: flex; flex-direction: column; justify-content: space-between; padding-right: 48px; gap: 60px; }
   .hero-tag { display: flex; flex-direction: column; gap: 10px; }
   .hero-tag .name { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
   .hero-wm { width: 100%; }
@@ -125,10 +125,25 @@
   .hero-wm .wm-est { font-size: clamp(9px, 0.85vw, 12px); font-weight: 600; letter-spacing: 0.32em; color: var(--ink-soft); white-space: nowrap; }
   .hero-lede { margin-top: 24px; font-size: clamp(20px, 1.7vw, 26px); font-weight: 200; letter-spacing: -0.025em; color: var(--ink); max-width: 26ch; line-height: 1.25; }
   .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .hero-right { position: relative; }
+  /* Hero photo column locks to 4:5 so mf1 isn't over-cropped on tall viewports */
+  .hero-right { position: relative; aspect-ratio: 4 / 5; min-height: 560px; }
   .hero-right .crimson-bg { position: absolute; top: 0; right: -56px; width: calc(100% + 56px); bottom: 0; background: var(--berry); }
-  /* Photo fills the crimson block with even 24px insets — overrides .img-ph aspect-ratio */
   .hero-right .photo { position: absolute; top: 24px; right: 24px; bottom: 24px; left: 24px; aspect-ratio: auto; }
+  /* Editorial fade-in: photo eases up while the crimson block lands a hair earlier */
+  .hero-right .crimson-bg { opacity: 0; animation: heroBgIn 0.9s cubic-bezier(0.2,0.8,0.2,1) 0.05s forwards; }
+  .hero-right .photo img { opacity: 0; transform: scale(1.045); animation: heroPhotoIn 1.6s cubic-bezier(0.16,1,0.3,1) 0.35s forwards; }
+  .hero-left > * { opacity: 0; animation: heroCopyIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.15s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.45s; }
+  @keyframes heroBgIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes heroPhotoIn { from { opacity: 0; transform: scale(1.045); } to { opacity: 1; transform: scale(1); } }
+  @keyframes heroCopyIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-right .crimson-bg,
+    .hero-right .photo img,
+    .hero-left > * { animation: none; opacity: 1; transform: none; }
+  }
 
   /* ═══ i. PROPERTY (paper, four-up scroll) ═══ */
   .property { background: var(--paper); }
@@ -177,13 +192,15 @@
   .crop-card.plain::before { display: none; }
 
   /* ═══ v. MEET US AT THE MARKET (crimson) ═══ */
-  .follow { background: var(--berry); color: var(--paper); padding: 180px 56px; }
-  .follow .section-head .left .num { color: rgba(251,247,240,0.7); }
-  .follow .section-head .left .lbl { color: rgba(251,247,240,0.92); }
+  .follow { background: var(--berry); color: var(--paper); padding: 160px 56px; }
   .follow h2 { color: var(--paper); }
   .follow h2 em { color: rgba(251,247,240,0.62); font-style: normal; }
-  .follow-feature { margin-top: 96px; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
-  .follow-feature .img-ph { grid-column: 2; max-width: 420px; }
+  .follow-spread { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center; }
+  .follow-spread .copy .head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .follow-spread .copy .head .num { font-size: 13px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251,247,240,0.7); font-style: italic; }
+  .follow-spread .copy .head .lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251,247,240,0.92); }
+  .follow-spread .copy h2 { margin-bottom: 22px; }
+  .follow-spread .copy p { color: rgba(251,247,240,0.88); font-size: 17px; line-height: 1.65; max-width: 52ch; margin-bottom: 32px; }
 
   /* ═══ vi. COLORS OF THE FARM (ink) ═══ */
   .colors { background: var(--ink); color: var(--paper); }
@@ -234,7 +251,7 @@
     .hero { padding: 110px 24px 60px; }
     .hero-inner { grid-template-columns: 1fr; height: auto; min-height: 0; gap: 32px; }
     .hero-left { padding-right: 0; gap: 28px; }
-    .hero-right { aspect-ratio: 4 / 5; height: auto; }
+    .hero-right { aspect-ratio: 4 / 5; min-height: 0; }
     .hero-right .crimson-bg { right: -24px; bottom: 0; }
     .hero-right .photo { top: 16px; right: 16px; bottom: 16px; left: 16px; }
 
@@ -249,8 +266,8 @@
 
     .colors-pair { grid-template-columns: 1fr; }
     .follow { padding: 100px 24px; }
-    .follow-feature { grid-template-columns: 1fr; gap: 0; margin-top: 56px; }
-    .follow-feature .img-ph { grid-column: 1; max-width: none; }
+    .follow-spread { grid-template-columns: 1fr; gap: 36px; align-items: start; }
+    .follow-spread .img-ph { order: -1; }
 
     footer .row { flex-direction: column; align-items: start; gap: 16px; }
     footer .row .right { text-align: left; }
@@ -605,23 +622,21 @@
 <!-- ═══ v. MEET US AT THE MARKET ═══ -->
 <section class="follow crimson-grain" id="follow">
   <div class="container" style="position:relative; z-index:2;">
-    <div class="section-head">
-      <div class="left">
-        <span class="num">v.</span>
-        <span class="lbl">Meet us at the market</span>
-      </div>
-      <div class="right">
-        <h2>Where we are <em>this week.</em></h2>
-        <p style="color: rgba(251,247,240,0.85); font-size: 17px; line-height: 1.65;">Markets shift, harvests change, and the best way to know what we're picking — and where we'll be — is to follow along.</p>
-        <div style="margin-top: 32px;">
-          <a class="btn btn-pill-paper" href="https://instagram.com/menemshafarm" target="_blank" rel="noopener">
-            <svg width="18" height="18" aria-hidden="true"><use href="#ig"/></svg> @menemshafarm
-          </a>
+    <div class="follow-spread">
+      <div class="copy">
+        <div class="head">
+          <span class="num">v.</span>
+          <span class="lbl">Meet us at the market</span>
         </div>
+        <h2>Where we are <em>this week.</em></h2>
+        <p>Markets shift, harvests change, and the best way to know what we're picking — and where we'll be — is to follow along.</p>
+        <a class="btn btn-pill-paper" href="https://instagram.com/menemshafarm" target="_blank" rel="noopener">
+          <svg width="18" height="18" aria-hidden="true"><use href="#ig"/></svg> @menemshafarm
+        </a>
       </div>
-    </div>
-    <div class="follow-feature">
-      <div class="img-ph"><img src="images/peach2.png" alt="Peaches at market" loading="lazy"/></div>
+      <div class="img-ph">
+        <img src="images/peach2.png" alt="Peaches at market" loading="lazy"/>
+      </div>
     </div>
   </div>
 </section>
