@@ -95,6 +95,12 @@
   nav .nav-links { display: flex; gap: 28px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
   nav a { color: inherit; text-decoration: none; opacity: 0.85; transition: opacity 0.3s; }
   nav a:hover { opacity: 1; }
+  /* Hamburger toggle (mobile only) */
+  .nav-burger { display: none; background: transparent; border: 0; width: 36px; height: 36px; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; color: inherit; }
+  .nav-burger span { display: block; width: 22px; height: 1.5px; background: currentColor; border-radius: 1px; transition: transform 0.25s, opacity 0.25s; }
+  nav.open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  nav.open .nav-burger span:nth-child(2) { opacity: 0; }
+  nav.open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--berry); }
   .display { font-weight: 200; letter-spacing: -0.045em; line-height: 0.92; }
@@ -253,7 +259,29 @@
   @media (max-width: 900px) {
     section { padding: 88px 24px; }
     nav { padding: 18px 24px; }
-    nav .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    nav .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      align-items: start;
+      gap: 0;
+      padding: 4px 24px 16px;
+      background: var(--paper);
+      border-bottom: 1px solid rgba(31,27,23,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    nav.open .nav-links { display: flex; }
+    nav .nav-links a {
+      width: 100%;
+      padding: 16px 0;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      border-bottom: 1px solid rgba(31,27,23,0.06);
+      opacity: 1;
+    }
+    nav .nav-links a:last-child { border-bottom: 0; }
     .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
 
     /* Mobile nav: drop blend-mode (flaky on iOS Safari with fixed elements)
@@ -387,6 +415,9 @@
     <a href="#follow">Markets</a>
     <a href="#colors">Colors</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -740,6 +771,22 @@
       row.scrollBy({ left: dir * step, behavior: 'smooth' });
     });
   });
+
+  // Mobile nav toggle
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.nav-burger');
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 </script>
 
 </body>
