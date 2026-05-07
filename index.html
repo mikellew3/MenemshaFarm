@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Menemsha Farm — Martha's Vineyard</title>
-<meta name="description" content="A seven-acre family farm up-island on Martha's Vineyard. Stone fruits, apples, honey, eggs, and tulips — at island farmers markets, all season long." />
+<meta name="description" content="A seven-acre family farm up-island on Martha's Vineyard. Stone fruits, apples, honey, eggs, and cut flowers — at island farmers markets, all season long." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -126,13 +126,13 @@
   .hero-lede { margin-top: 24px; font-size: clamp(20px, 1.7vw, 26px); font-weight: 200; letter-spacing: -0.025em; color: var(--ink); max-width: 26ch; line-height: 1.25; }
   .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
   .hero-right { position: relative; }
-  .hero-right .crimson-bg { position: absolute; top: 0; right: -56px; width: calc(100% + 56px); bottom: -80px; background: var(--berry); }
-  /* Photo block: 24px insets on three sides, height comes from the 4:5 aspect ratio */
-  .hero-right .photo { position: absolute; top: 24px; right: 24px; left: 24px; }
+  .hero-right .crimson-bg { position: absolute; top: 0; right: -56px; width: calc(100% + 56px); bottom: 0; background: var(--berry); }
+  /* Photo fills the crimson block with even 24px insets — overrides .img-ph aspect-ratio */
+  .hero-right .photo { position: absolute; top: 24px; right: 24px; bottom: 24px; left: 24px; aspect-ratio: auto; }
 
-  /* ═══ i. PROPERTY (paper, triptych) ═══ */
+  /* ═══ i. PROPERTY (paper, four-col gallery) ═══ */
   .property { background: var(--paper); }
-  .triptych { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .property-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 
   /* ═══ ii. JOE (crimson band, 50/50 spread) ═══ */
   .joe { background: var(--berry); color: var(--paper); }
@@ -211,7 +211,7 @@
 
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 1100px) {
-    .triptych { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .property-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .flower-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
   }
 
@@ -225,10 +225,10 @@
     .hero-inner { grid-template-columns: 1fr; height: auto; min-height: 0; gap: 32px; }
     .hero-left { padding-right: 0; gap: 28px; }
     .hero-right { aspect-ratio: 4 / 5; height: auto; }
-    .hero-right .crimson-bg { right: -24px; bottom: -32px; }
-    .hero-right .photo { top: 16px; right: 16px; left: 16px; }
+    .hero-right .crimson-bg { right: -24px; bottom: 0; }
+    .hero-right .photo { top: 16px; right: 16px; bottom: 16px; left: 16px; }
 
-    .triptych { grid-template-columns: 1fr; gap: 14px; }
+    .property-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
     .joe-spread { grid-template-columns: 1fr; gap: 36px; }
     /* On mobile lead with the photo, then the copy */
@@ -257,7 +257,7 @@
     .hero-tag .name { font-size: 22px; }
     .hero-wm .wm-mid { padding: 0 8px; gap: 6px; }
     .hero-lede { font-size: 18px; }
-    .hero-right .crimson-bg { right: -20px; bottom: -24px; }
+    .hero-right .crimson-bg { right: -20px; bottom: 0; }
 
     h2 { font-size: clamp(34px, 11vw, 52px); }
     p, p.lede { font-size: 15px; }
@@ -377,10 +377,14 @@
         <p>Perched on the western edge of Martha's Vineyard, the land slopes from the road down toward Menemsha Pond. Pasture, orchard, hen house, hives — all of it within a slow walk.</p>
       </div>
     </div>
-    <div class="triptych">
-      <div class="img-ph"><img src="images/mf3.png" alt="The land at Menemsha Farm" loading="lazy"/></div>
+    <div class="property-grid">
       <div class="img-ph"><img src="images/mf2.png" alt="The farmstead" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/mf3.png" alt="The land at Menemsha Farm" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/mf4.png" alt="Orchard rows" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/mf5.png" alt="The fields in season" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/mf6.png" alt="Across the property" loading="lazy"/></div>
       <div class="img-ph"><img src="images/chick1.png" alt="Pasture-raised hens" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/mf1.png" alt="Above the harbor" loading="lazy"/></div>
     </div>
   </div>
 </section>
@@ -400,7 +404,7 @@
     <div class="joe-spread">
       <div class="crimson-copy">
         <p class="first">Three generations have worked these seven acres. The orchard rows are Joe's hands; the flock and the hives followed. His daughter and son-in-law work alongside him now, and a fourth generation is on the way.</p>
-        <p>We grow stone fruits — peaches and nectarines — alongside heirloom apples, cultivated honey, pasture-raised eggs, and cut flowers including our beautiful and famous tulips. Everything goes to market.</p>
+        <p>We grow stone fruits, heirloom apples, kale, gourds, garlic, root vegetables, and anything Joe feels like putting in the ground in the spring. Cultivated honey, pasture-raised eggs, and fresh-cut flowers are also a staple here. Everything goes to market.</p>
         <p>The work is quiet, mostly, and constant, and beautiful.</p>
         <p class="signed">— A note from the family</p>
       </div>
@@ -420,15 +424,19 @@
         <span class="lbl">Cut Flowers</span>
       </div>
       <div class="right">
-        <h2>Tulips, by the <em>bunch.</em></h2>
-        <p>Cut at dawn, on the table by ten. Our beautiful and famous tulips lead the spring; cosmos, dahlia, and the wild meadow blooms carry the table through summer and fall.</p>
+        <h2>Cut at dawn, on the table by <em>ten.</em></h2>
+        <p>Bunches by the armful, all season long — from the first of the spring blooms through the last of the late-summer color. What's in the field is what's at market.</p>
       </div>
     </div>
     <div class="flower-grid">
-      <div class="img-ph"><img src="images/flower1.png" alt="Tulips" loading="lazy"/></div>
-      <div class="img-ph"><img src="images/flowers3.png" alt="Cut flowers from the field" loading="lazy"/></div>
-      <div class="img-ph"><img src="images/flowers4.png" alt="Tulips by the bunch" loading="lazy"/></div>
-      <div class="img-ph"><img src="images/flower6.png" alt="Garden flowers" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flower1.png" alt="Cut flowers from the field" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flower2.png" alt="Cut flowers from the field" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flower3.png" alt="Cut flowers from the field" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flower5.png" alt="Cut flowers from the field" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flower6.png" alt="Cut flowers from the field" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flowers3.png" alt="Bunches by the armful" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flowers4.png" alt="Bunches by the armful" loading="lazy"/></div>
+      <div class="img-ph"><img src="images/flowers5.png" alt="Bunches by the armful" loading="lazy"/></div>
     </div>
   </div>
 </section>
