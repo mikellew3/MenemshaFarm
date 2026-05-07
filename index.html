@@ -104,8 +104,8 @@
   .btn-ghost-paper { background: transparent; color: var(--paper); border: 1px solid rgba(251,247,240,0.4); }
   .btn-ghost-paper:hover { background: rgba(251,247,240,0.08); }
 
-  /* Image placeholder */
-  .img-ph { background: var(--bone); position: relative; overflow: hidden; }
+  /* Image placeholder — every photo on the site is 4:5 portrait */
+  .img-ph { background: var(--bone); position: relative; overflow: hidden; aspect-ratio: 4 / 5; border-radius: 2px; }
   .img-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .img-ph svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .img-ph .ph-meta { position: absolute; left: 20px; bottom: 18px; font-size: 9px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--paper); display: flex; flex-direction: column; gap: 4px; z-index: 2; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
@@ -127,7 +127,8 @@
   .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
   .hero-right { position: relative; }
   .hero-right .crimson-bg { position: absolute; top: 0; right: -56px; width: calc(100% + 56px); bottom: -80px; background: var(--berry); }
-  .hero-right .photo { position: absolute; top: 24px; right: 24px; left: 24px; bottom: 24px; }
+  /* Photo block: 24px insets on three sides, height comes from the 4:5 aspect ratio */
+  .hero-right .photo { position: absolute; top: 24px; right: 24px; left: 24px; }
 
   /* ═══ STORY (crimson band) ═══ */
   .story { background: var(--berry); color: var(--paper); }
@@ -146,11 +147,12 @@
   .carousel { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
   .carousel::-webkit-scrollbar { display: none; }
   .carousel > .crop-card { scroll-snap-align: start; }
-  .crop-card { flex: 0 0 300px; height: 420px; border-radius: 2px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
+  /* Every card is 320×400 (4:5) — same size as every other photo on the site */
+  .crop-card { flex: 0 0 320px; height: 400px; border-radius: 2px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
   .crop-card:hover { transform: translateY(-4px); }
-  .crop-card.feature { flex: 0 0 420px; }
   .crop-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,27,23,0.55) 0%, rgba(31,27,23,0.1) 45%, transparent 70%); z-index: 1; pointer-events: none; }
-  .crop-card .photo { position: absolute; inset: 0; }
+  /* The .img-ph aspect-ratio is overridden here so the photo fills the card exactly */
+  .crop-card .photo { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
   .crop-card .meta { position: absolute; left: 20px; right: 20px; bottom: 20px; color: var(--paper); display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0,0,0,0.3); z-index: 2; }
   .crop-card .meta .when { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251,247,240,0.85); }
   .crop-card .meta .name { font-size: 22px; font-weight: 300; letter-spacing: -0.015em; }
@@ -213,10 +215,10 @@
     .hero { padding: 110px 24px 60px; }
     .hero-inner { grid-template-columns: 1fr; height: auto; min-height: 0; gap: 32px; }
     .hero-left { padding-right: 0; gap: 32px; }
-    .hero-right { height: 360px; }
+    .hero-right { aspect-ratio: 4 / 5; height: auto; }
     .hero-right .crimson-bg { right: -24px; bottom: -32px; }
-    .crop-card { flex: 0 0 240px; height: 320px; }
-    .crop-card.feature { flex: 0 0 280px; }
+    .hero-right .photo { top: 16px; right: 16px; left: 16px; }
+    .crop-card { flex: 0 0 256px; height: 320px; }
     .colors-pair { grid-template-columns: 1fr; }
     .follow { padding: 100px 24px; }
     footer .row { flex-direction: column; align-items: start; gap: 16px; }
@@ -238,8 +240,7 @@
     h2 { font-size: clamp(36px, 12vw, 56px); }
     p, p.lede { font-size: 15px; }
     .story-body p { font-size: 16px; line-height: 1.65; }
-    .crop-card { flex: 0 0 220px; height: 300px; }
-    .crop-card.feature { flex: 0 0 240px; }
+    .crop-card { flex: 0 0 224px; height: 280px; }
     .colors p.intro { font-size: 15px; margin-bottom: 48px; }
     .color-block { padding: 28px; }
     footer { padding: 60px 20px 32px; }
@@ -369,7 +370,7 @@
     </div>
     <div class="carousel" id="carousel">
 
-      <div class="crop-card feature">
+      <div class="crop-card">
         <div class="img-ph photo">
           <img src="images/flower1.png" alt="Tulips, by the bunch" loading="lazy"/>
         </div>
