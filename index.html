@@ -171,9 +171,10 @@
   .crop-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,27,23,0.6) 0%, rgba(31,27,23,0.12) 45%, transparent 70%); z-index: 1; pointer-events: none; }
   .crop-card .photo { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
   .crop-card .meta { position: absolute; left: 20px; right: 20px; bottom: 20px; color: var(--paper); display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0,0,0,0.35); z-index: 2; }
-  .crop-card .meta .when { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251,247,240,0.85); }
   .crop-card .meta .name { font-size: 22px; font-weight: 300; letter-spacing: -0.015em; }
   .crop-card .meta .note { font-size: 12px; color: rgba(251,247,240,0.85); margin-top: 4px; }
+  /* Untagged cards: just the photo, no overlay */
+  .crop-card.plain::before { display: none; }
 
   /* ═══ v. MEET US AT THE MARKET (crimson) ═══ */
   .follow { background: var(--berry); color: var(--paper); padding: 180px 56px; }
@@ -181,6 +182,8 @@
   .follow .section-head .left .lbl { color: rgba(251,247,240,0.92); }
   .follow h2 { color: var(--paper); }
   .follow h2 em { color: rgba(251,247,240,0.62); font-style: normal; }
+  .follow-feature { margin-top: 96px; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
+  .follow-feature .img-ph { grid-column: 2; max-width: 420px; }
 
   /* ═══ vi. COLORS OF THE FARM (ink) ═══ */
   .colors { background: var(--ink); color: var(--paper); }
@@ -246,6 +249,8 @@
 
     .colors-pair { grid-template-columns: 1fr; }
     .follow { padding: 100px 24px; }
+    .follow-feature { grid-template-columns: 1fr; gap: 0; margin-top: 56px; }
+    .follow-feature .img-ph { grid-column: 1; max-width: none; }
 
     footer .row { flex-direction: column; align-items: start; gap: 16px; }
     footer .row .right { text-align: left; }
@@ -452,7 +457,7 @@
       <div class="img-ph"><img src="images/flowers5.png" alt="Bunches by the armful" loading="lazy"/></div>
     </div>
     <div class="scroll-foot">
-      <span class="stat">Eight bunches in the field <span class="arrow-inline">→ scroll for more</span></span>
+      <span class="stat">Bunches in the field <span class="arrow-inline">→ scroll for more</span></span>
       <div class="nav-arrows">
         <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
         <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -481,9 +486,20 @@
           <img src="images/basket1.png" alt="Stone fruit — peaches and nectarines" loading="lazy"/>
         </div>
         <div class="meta">
-          <span class="when">Jul · Sep</span>
           <span class="name">Stone fruit.</span>
           <span class="note">Peaches and nectarines.</span>
+        </div>
+      </div>
+
+      <div class="crop-card plain">
+        <div class="img-ph photo">
+          <img src="images/peach1.png" alt="Peaches from the orchard" loading="lazy"/>
+        </div>
+      </div>
+
+      <div class="crop-card plain">
+        <div class="img-ph photo">
+          <img src="images/peaches3.png" alt="Peaches from the orchard" loading="lazy"/>
         </div>
       </div>
 
@@ -492,20 +508,66 @@
           <img src="images/apple1.png" alt="Honeycrisp apples and Asian pears" loading="lazy"/>
         </div>
         <div class="meta">
-          <span class="when">Sep · Nov</span>
           <span class="name">Apples &amp; pears.</span>
           <span class="note">Honeycrisp and Asian pear.</span>
         </div>
       </div>
 
+      <div class="crop-card plain">
+        <div class="img-ph photo">
+          <img src="images/apples2.png" alt="Apples from the orchard" loading="lazy"/>
+        </div>
+      </div>
+
+      <div class="crop-card plain">
+        <div class="img-ph photo">
+          <img src="images/ap1.png" alt="Apples and pears" loading="lazy"/>
+        </div>
+      </div>
+
       <div class="crop-card">
         <div class="img-ph photo">
-          <img src="images/pumpkin1.png" alt="Autumn squash" loading="lazy"/>
+          <img src="images/pumpkin1.png" alt="Gourds — pumpkins and squash" loading="lazy"/>
         </div>
         <div class="meta">
-          <span class="when">Sep · Nov</span>
-          <span class="name">Autumn squash.</span>
-          <span class="note">Pumpkins and winter pie.</span>
+          <span class="name">Gourds.</span>
+          <span class="note">Pumpkins and squash.</span>
+        </div>
+      </div>
+
+      <div class="crop-card plain">
+        <div class="img-ph photo">
+          <img src="images/pumpkins2.png" alt="Pumpkins from the field" loading="lazy"/>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/kale1.png" alt="Kale" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="name">Kale.</span>
+          <span class="note">By the head.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/basil1.png" alt="Basil" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="name">Basil.</span>
+          <span class="note">Sweet, by the bunch.</span>
+        </div>
+      </div>
+
+      <div class="crop-card">
+        <div class="img-ph photo">
+          <img src="images/garlic1.png" alt="Garlic" loading="lazy"/>
+        </div>
+        <div class="meta">
+          <span class="name">Garlic.</span>
+          <span class="note">Cured and hung.</span>
         </div>
       </div>
 
@@ -514,7 +576,6 @@
           <img src="images/honey1.png" alt="Cultivated honey by the jar" loading="lazy"/>
         </div>
         <div class="meta">
-          <span class="when">Year-round</span>
           <span class="name">Cultivated honey.</span>
           <span class="note">By the jar, while it lasts.</span>
         </div>
@@ -525,7 +586,6 @@
           <img src="images/chick1.png" alt="Pasture eggs collected daily" loading="lazy"/>
         </div>
         <div class="meta">
-          <span class="when">Year-round</span>
           <span class="name">Pasture eggs.</span>
           <span class="note">Collected every morning.</span>
         </div>
@@ -533,7 +593,7 @@
 
     </div>
     <div class="scroll-foot">
-      <span class="stat">Five harvests · Three generations · One small farm <span class="arrow-inline">→ scroll for more</span></span>
+      <span class="stat">Seasonal harvests · Three generations · One small farm <span class="arrow-inline">→ scroll for more</span></span>
       <div class="nav-arrows">
         <button class="arrow-btn" data-dir="-1" aria-label="Previous"><svg aria-hidden="true"><use href="#arrow-l"/></svg></button>
         <button class="arrow-btn" data-dir="1" aria-label="Next"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
@@ -559,6 +619,9 @@
           </a>
         </div>
       </div>
+    </div>
+    <div class="follow-feature">
+      <div class="img-ph"><img src="images/peach2.png" alt="Peaches at market" loading="lazy"/></div>
     </div>
   </div>
 </section>
